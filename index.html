@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#1a1a2e" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Família Faria" />
+  <title>Família Faria</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- PIN SCREEN -->
+<div id="pin-screen">
+  <div class="pin-box">
+    <div class="pin-logo">👨‍👩‍👧‍👧</div>
+    <h1>Família Faria</h1>
+    <p>Introduz o código de acesso</p>
+    <div class="pin-dots" id="pin-dots">
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div class="pin-error" id="pin-error">Código incorrecto</div>
+    <div class="pin-pad">
+      <button class="pin-btn" data-d="1">1</button>
+      <button class="pin-btn" data-d="2">2</button>
+      <button class="pin-btn" data-d="3">3</button>
+      <button class="pin-btn" data-d="4">4</button>
+      <button class="pin-btn" data-d="5">5</button>
+      <button class="pin-btn" data-d="6">6</button>
+      <button class="pin-btn" data-d="7">7</button>
+      <button class="pin-btn" data-d="8">8</button>
+      <button class="pin-btn" data-d="9">9</button>
+      <button class="pin-btn pin-clear" id="pin-clear">⌫</button>
+      <button class="pin-btn" data-d="0">0</button>
+      <button class="pin-btn pin-ok" id="pin-ok">OK</button>
+    </div>
+  </div>
+</div>
+
+<div id="app">
+
+  <!-- HOME / CALENDAR -->
+  <div class="screen active" id="screen-calendar">
+    <header class="topbar">
+      <div class="topbar-title">
+        <span id="month-label">Junho 2026</span>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="btn-prev-month">&#8249;</button>
+        <button class="icon-btn" id="btn-today">Hoje</button>
+        <button class="icon-btn" id="btn-next-month">&#8250;</button>
+      </div>
+    </header>
+
+    <div class="member-filter">
+      <button class="member-chip all active" data-member="all">Todos</button>
+      <button class="member-chip" data-member="claudio" style="--c:#6C63FF">Cláudio</button>
+      <button class="member-chip" data-member="odete"   style="--c:#FF6584">Odete</button>
+      <button class="member-chip" data-member="clara"   style="--c:#43D9AD">Clara</button>
+      <button class="member-chip" data-member="leonor"  style="--c:#FFB347">Leonor</button>
+    </div>
+
+    <div class="calendar-grid-wrap">
+      <div class="cal-week-labels">
+        <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span>
+        <span>Qui</span><span>Sex</span><span>Sáb</span>
+      </div>
+      <div id="cal-grid" class="cal-grid"></div>
+    </div>
+
+    <div id="day-panel" class="day-panel hidden">
+      <div class="day-panel-header">
+        <span id="day-panel-title"></span>
+        <button class="close-btn" id="close-day-panel">✕</button>
+      </div>
+      <div id="day-events-list" class="day-events-list"></div>
+      <button class="fab-secondary" id="btn-add-from-day">+ Adicionar</button>
+    </div>
+
+    <button class="fab" id="btn-open-add">+</button>
+  </div>
+
+  <!-- LIST VIEW -->
+  <div class="screen" id="screen-list">
+    <header class="topbar">
+      <div class="topbar-title">Próximos eventos</div>
+    </header>
+    <div id="list-view-content" class="list-view-content"></div>
+  </div>
+
+  <!-- SETTINGS -->
+  <div class="screen" id="screen-settings">
+    <header class="topbar">
+      <div class="topbar-title">Definições</div>
+    </header>
+    <div class="settings-body">
+      <div class="settings-section">
+        <h3>Membros da família</h3>
+        <div class="member-cards">
+          <div class="member-card" style="--c:#6C63FF"><div class="mc-dot"></div><div class="mc-info"><strong>Cláudio</strong><small>Pai</small></div></div>
+          <div class="member-card" style="--c:#FF6584"><div class="mc-dot"></div><div class="mc-info"><strong>Odete</strong><small>Mãe</small></div></div>
+          <div class="member-card" style="--c:#43D9AD"><div class="mc-dot"></div><div class="mc-info"><strong>Clara</strong><small>Filha</small></div></div>
+          <div class="member-card" style="--c:#FFB347"><div class="mc-dot"></div><div class="mc-info"><strong>Leonor</strong><small>Filha</small></div></div>
+        </div>
+      </div>
+      <div class="settings-section">
+        <h3>Tipos de compromisso</h3>
+        <div class="type-list">
+          <div class="type-item"><span class="type-icon">🏥</span> Médico / Saúde</div>
+          <div class="type-item"><span class="type-icon">🏫</span> Escola</div>
+          <div class="type-item"><span class="type-icon">⚽</span> Desporto / Actividade</div>
+          <div class="type-item"><span class="type-icon">🎂</span> Aniversário</div>
+          <div class="type-item"><span class="type-icon">✈️</span> Viagem</div>
+          <div class="type-item"><span class="type-icon">💼</span> Trabalho</div>
+          <div class="type-item"><span class="type-icon">🍽️</span> Refeição / Social</div>
+          <div class="type-item"><span class="type-icon">📋</span> Outro</div>
+        </div>
+      </div>
+      <div class="settings-section">
+        <div class="sync-status" id="sync-status">
+          <span class="sync-dot" id="sync-dot"></span>
+          <span id="sync-text">A verificar ligação…</span>
+        </div>
+      </div>
+      <div class="settings-section">
+        <div class="sync-status">
+          <span>👤</span>
+          <span id="user-email">—</span>
+        </div>
+        <button class="danger-btn" id="btn-logout" style="margin-top:10px">Terminar sessão</button>
+      </div>
+      <div class="settings-section">
+        <button class="danger-btn" id="btn-clear-data">Apagar todos os dados</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-screen="screen-calendar">
+      <span class="nav-icon">📅</span>
+      <span>Calendário</span>
+    </button>
+    <button class="nav-btn" data-screen="screen-list">
+      <span class="nav-icon">📋</span>
+      <span>Lista</span>
+    </button>
+    <button class="nav-btn" data-screen="screen-settings">
+      <span class="nav-icon">⚙️</span>
+      <span>Família</span>
+    </button>
+  </nav>
+</div>
+
+<!-- ADD EVENT MODAL -->
+<div id="modal-overlay" class="modal-overlay hidden">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modal-title">Novo compromisso</h2>
+      <button class="close-btn" id="close-modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Título</label>
+        <input type="text" id="ev-title" placeholder="Ex: Consulta, Jogo, Reunião…" />
+      </div>
+      <div class="form-group">
+        <label>Tipo</label>
+        <div class="type-picker" id="type-picker">
+          <button class="type-btn active" data-type="medico">🏥 Médico</button>
+          <button class="type-btn" data-type="escola">🏫 Escola</button>
+          <button class="type-btn" data-type="desporto">⚽ Desporto</button>
+          <button class="type-btn" data-type="aniversario">🎂 Aniversário</button>
+          <button class="type-btn" data-type="viagem">✈️ Viagem</button>
+          <button class="type-btn" data-type="trabalho">💼 Trabalho</button>
+          <button class="type-btn" data-type="social">🍽️ Social</button>
+          <button class="type-btn" data-type="outro">📋 Outro</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Data</label>
+          <input type="date" id="ev-date" />
+        </div>
+        <div class="form-group">
+          <label>Hora (opcional)</label>
+          <input type="time" id="ev-time" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Quem</label>
+        <div class="member-picker" id="member-picker">
+          <button class="mp-btn" data-member="claudio" style="--c:#6C63FF">Cláudio</button>
+          <button class="mp-btn" data-member="odete"   style="--c:#FF6584">Odete</button>
+          <button class="mp-btn" data-member="clara"   style="--c:#43D9AD">Clara</button>
+          <button class="mp-btn" data-member="leonor"  style="--c:#FFB347">Leonor</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Nota (opcional)</label>
+        <textarea id="ev-note" rows="2" placeholder="Detalhes adicionais…"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="cancel-btn" id="btn-cancel">Cancelar</button>
+      <button class="save-btn" id="btn-save">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- EVENT DETAIL MODAL -->
+<div id="detail-overlay" class="modal-overlay hidden">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="detail-title"></h2>
+      <button class="close-btn" id="close-detail">✕</button>
+    </div>
+    <div class="modal-body" id="detail-body"></div>
+    <div class="modal-footer">
+      <button class="danger-btn" id="btn-delete-event">Eliminar</button>
+      <button class="save-btn" id="btn-edit-event">Editar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Firebase SDKs (compat) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging-compat.js"></script>
+<script src="firebase-config.js"></script>
+<!-- VAPID key for push notifications — substitui pelo teu -->
+<script>window.VAPID_KEY = 'BOj744h1GIbRz9cWzE3mnTYeTzuCV7WfZgnRxPi9xJgRpYWh2alOkH2481WVsVXU5OEviuhCFrY16CopDL8pDoI';</script>
+<script src="app.js"></script>
+</body>
+</html>
