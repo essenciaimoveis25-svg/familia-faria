@@ -417,7 +417,7 @@ function saveEvent() {
     eventsRef.child(state.editingId).update(payload);
   } else {
     eventsRef.push(payload);
-    fetch('/.netlify/functions/notify', {
+    fetch('https://famous-squirrel-511030.netlify.app/.netlify/functions/notify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
