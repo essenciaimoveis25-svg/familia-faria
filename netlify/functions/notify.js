@@ -17,10 +17,15 @@ const MEMBERS = {
   claudio: 'Cláudio', odete: 'Odete', clara: 'Clara', leonor: 'Leonor'
 };
 
+const CORS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS'
+};
+
 exports.handler = async (event) => {
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method not allowed' };
-  }
+  if (event.httpMethod === 'OPTIONS') return { statusCode: 200, headers: CORS, body: '' };
+  if (event.httpMethod !== 'POST') return { statusCode: 405, headers: CORS, body: 'Method not allowed' };
 
   try {
     const { title, date, time, type, members } = JSON.parse(event.body);
@@ -53,7 +58,7 @@ exports.handler = async (event) => {
           renotify: true
         },
         fcmOptions: {
-          link: 'https://famous-squirrel-511030.netlify.app'
+          link: 'https://essenciaimoveis25-svg.github.io/familia-faria/'
         }
       },
       tokens
@@ -80,11 +85,12 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 200,
+      headers: CORS,
       body: JSON.stringify({ sent: response.successCount, failed: response.failureCount })
     };
 
   } catch (err) {
     console.error('Notify error:', err);
-    return { statusCode: 500, body: err.message };
+    return { statusCode: 500, headers: CORS, body: err.message };
   }
 };

@@ -118,7 +118,7 @@ function initFirebase() {
 async function initNotifications(app) {
   if (!('Notification' in window) || !('serviceWorker' in navigator)) return;
   try {
-    const reg = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
+    const reg = await navigator.serviceWorker.register('./firebase-messaging-sw.js');
     const permission = await Notification.requestPermission();
     if (permission !== 'granted') return;
 
