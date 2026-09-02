@@ -94,20 +94,24 @@ function initFirebase() {
 
     setSyncStatus(null);
 
-    firebase.auth(app).signInAnonymously().then(() => {
-      eventsRef = db.ref('events');
-      eventsRef.on('value', snapshot => {
-        state.events = snapshot.val() || {};
-        refreshAll();
-        setSyncStatus(true);
-      }, () => {
+    const auth = firebase.auth(app);
+    auth.setPersistence(firebase.auth.Auth.Persistence.NONE)
+      .catch(() => {})
+      .then(() => auth.signInAnonymously())
+      .then(() => {
+        eventsRef = db.ref('events');
+        eventsRef.on('value', snapshot => {
+          state.events = snapshot.val() || {};
+          refreshAll();
+          setSyncStatus(true);
+        }, () => {
+          setSyncStatus(false);
+        });
+        initNotifications(app);
+      }).catch(e => {
+        console.error('Auth error:', e);
         setSyncStatus(false);
       });
-      initNotifications(app);
-    }).catch(e => {
-      console.error('Auth error:', e);
-      setSyncStatus(false);
-    });
   } catch (e) {
     console.error('Firebase error:', e);
     setSyncStatus(false);
