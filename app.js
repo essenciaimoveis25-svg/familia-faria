@@ -528,6 +528,15 @@ function init() {
     if (e.target === document.getElementById('modal-overlay')) closeModal();
   });
 
+  document.querySelectorAll('.horario-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.horario-tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.horario-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('htab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
   document.getElementById('btn-clear-data').onclick = () => {
     if (confirm('Apagar TODOS os compromissos? Esta acção não pode ser desfeita.')) {
       eventsRef.remove();

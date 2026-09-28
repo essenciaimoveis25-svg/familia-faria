@@ -745,3 +745,109 @@ textarea { resize: none; }
   line-height: 1.4;
 }
 .login-error.hidden { display: none; }
+
+/* ===== HORÁRIOS ===== */
+.horario-tabs {
+  display: flex;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.horario-tab {
+  flex: 1;
+  padding: 11px 8px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text2);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .15s;
+}
+.horario-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.horario-body {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+.horario-panel {
+  display: none;
+  height: 100%;
+  overflow-y: auto;
+  padding: 10px 8px 16px;
+}
+.horario-panel.active { display: block; }
+
+.horario-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.horario-table {
+  width: 100%;
+  min-width: 300px;
+  border-collapse: collapse;
+  font-size: 10px;
+}
+.horario-table thead th {
+  padding: 5px 3px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  border-bottom: 1px solid var(--border);
+}
+.horario-table td {
+  padding: 3px 2px;
+  vertical-align: middle;
+  text-align: center;
+  border-bottom: 1px solid rgba(46,46,74,.6);
+}
+.ht-time {
+  font-size: 9px;
+  color: var(--text2);
+  font-weight: 600;
+  white-space: nowrap;
+  width: 40px;
+  line-height: 1.3;
+}
+.ht-break td, .ht-break { opacity: 0.3; }
+.ht-break td[colspan] { font-size: 10px; color: var(--text2); }
+
+.hs {
+  display: block;
+  padding: 3px 3px;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 9.5px;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.hs.mat  { background: rgba(255,80,80,.25);   color: #ff9090; }
+.hs.por  { background: rgba(74,158,255,.25);  color: #82c1ff; }
+.hs.ing  { background: rgba(255,212,59,.25);  color: #ffd43b; }
+.hs.ef   { background: rgba(255,140,158,.25); color: #ffb3be; }
+.hs.fra  { background: rgba(255,101,132,.25); color: #ff8fab; }
+.hs.cien { background: rgba(67,217,173,.25);  color: #43d9ad; }
+.hs.fq   { background: rgba(0,188,212,.25);   color: #4dd0e1; }
+.hs.hist { background: rgba(255,179,71,.25);  color: #ffb347; }
+.hs.geo  { background: rgba(255,215,0,.25);   color: #ffd700; }
+.hs.bio  { background: rgba(81,207,102,.25);  color: #69db7c; }
+.hs.teat { background: rgba(116,192,252,.25); color: #74c0fc; }
+.hs.mus  { background: rgba(248,165,194,.25); color: #f8a5c2; }
+.hs.mor  { background: rgba(255,200,80,.25);  color: #ffc84d; }
+.hs.tic  { background: rgba(32,201,151,.25);  color: #20c997; }
+.hs.ev   { background: rgba(232,62,140,.25);  color: #e83e8c; }
+.hs.ofi  { background: rgba(132,94,247,.25);  color: #9b72ff; }
+.hs.amat { background: rgba(255,80,80,.18);   color: #ff9090; }
+.hs.apor { background: rgba(74,158,255,.18);  color: #82c1ff; }
+.hs.bety { background: rgba(255,130,100,.25); color: #ffaa88; }
+.hs.sil  { background: rgba(32,201,151,.25);  color: #20c997; }
+.hs.cur  { background: rgba(132,94,247,.25);  color: #9b72ff; }
