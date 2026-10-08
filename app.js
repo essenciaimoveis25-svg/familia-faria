@@ -539,7 +539,9 @@ function init() {
 
   document.getElementById('btn-clear-data').onclick = () => {
     if (confirm('Apagar TODOS os compromissos? Esta acção não pode ser desfeita.')) {
-      eventsRef.remove();
+      const wipe = {};
+      Object.keys(state.events).forEach(id => { wipe[id] = null; });
+      eventsRef.update(wipe);
     }
   };
 
