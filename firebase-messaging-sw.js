@@ -2,7 +2,7 @@ importScripts('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js
 importScripts('https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging-compat.js');
 
 /* ===== CACHE ===== */
-const CACHE = 'familia-v2';
+const CACHE = 'familia-v3';
 
 self.addEventListener('install', e => {
   self.skipWaiting();
@@ -29,7 +29,7 @@ self.addEventListener('fetch', e => {
   const url = e.request.url;
   if (url.includes('googleapis') || url.includes('gstatic') || url.includes('firebasedatabase') || url.includes('netlify')) return;
   e.respondWith(
-    fetch(e.request).then(res => {
+    fetch(e.request, { cache: 'no-store' }).then(res => {
       const clone = res.clone();
       caches.open(CACHE).then(c => c.put(e.request, clone));
       return res;
